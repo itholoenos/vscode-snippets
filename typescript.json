@@ -1,0 +1,82 @@
+{
+	"Print info to console with $log angular service": {
+		"prefix": "info",
+		"body": [
+			"$log.info($1);",
+			"$2"
+		],
+		"description": "Log info output to console"
+	},
+
+	"Print error to console with $log angular service": {
+		"prefix": "error",
+		"body": [
+			"$log.error($1);",
+			"$2"
+		],
+		"description": "Log error output to console"
+	},
+
+	"Angular Controller": {
+		"prefix": "ngcontroller",
+		"body": [
+			"module Controllers {",
+			"\t'use strict';",
+			"",
+			"\texport interface I${Controller}CtrlScope extends ng.IScope {",
+			"\t}",
+			"",
+			"\texport class ${Controller}Ctrl {",
+			"\t\tstatic $inject: string[] = '$scope,$log'.split(',');
+			"\t\tconstructor($scope: I${Controller}CtrlScope, $log: ng.ILogService) {",
+			"\t\t\t$1",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tangular",
+			"\t\t.module('app')",
+			"\t\t.controller('${Controller}Ctrl', ${Controller}Ctrl);",
+			"}"
+		]
+	},
+	"Angular Service": {
+		"prefix": "ngservice",
+		"body": [
+			"module Services {",
+			"\t'use strict';",
+			"",
+			"\texport interface I${Service}Service {",
+			"\t}",
+			"",
+			"\texport class ${Service}Service implements I${Service}Service {",
+			"",
+			"\t\tstatic $inject: string[] = '$log'.split(',');
+			"\t\tconstructor($log: ng.ILogService) {",
+			"\t\t\t$1",
+			"\t\t}",
+			"\t}",
+			"",
+			"\tangular",
+			"\t\t.module('app')",
+			"\t\t.service('${Service}Service', ${Service}Service);",
+			"}"
+		]
+	},
+	"Angular scope service": {
+		"prefix": "scope",
+		"body": [
+			"$scope.$1"
+		]
+	}
+
+
+	"Angular Func in scope": {
+		"prefix": "scopefunction",
+		"body": [
+			"$scope.$1 = $1",
+			"function $1() {",
+				"\t$2",
+			"}"
+		]
+	}
+}
